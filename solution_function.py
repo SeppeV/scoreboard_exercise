@@ -12,8 +12,9 @@ def update_score(oldscore, team):
     points_a = oldscore[3]
 
     # schrijf hier de nodige code om de testen te doen slagen
+
+    last_set = True
     if sets_h == 2 and sets_a == 2:
-        last_set = True
 
     if team == "H":
         points_h += 1
