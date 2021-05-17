@@ -1,30 +1,38 @@
 def update_score(oldscore, team):
-
     """Deze functie berekent de nieuwe stand, vertrekkend van
     de oude stand "oldscore" als "team" net gescoord heeft.
     De nieuwe stand wordt als resultaat teruggegeven.
-    oldscore: een tuple van 4 nummers, set thuis, set away, punten thuis, punten away
+    oldscore: een tuple van 4 nummers, set thuis, set away, punten thuis,
+    punten away
     team: de ploeg die net scoorde, "H" voor thuis, "A" voor away
     """
-
-    sets_home = oldscore[0]
-    sets_away = oldscore[1]
-    points_home = oldscore[2]
-    points_away = oldscore[3]
+    sets_h = oldscore[0]
+    sets_a = oldscore[1]
+    points_h = oldscore[2]
+    points_a = oldscore[3]
 
     # schrijf hier de nodige code om de testen te doen slagen
+    if sets_h == 2 and sets_a == 2:
+        last_set = True
 
     if team == "H":
-        points_home = points_home + 1
-    elif team == "A":
-        points_away = points_away + 1
-    if points_home >= 25:
-        sets_home = sets_home + 1
-        points_home = 0
-        points_away = 0
-    if points_away >= 25:
-        sets_away = sets_away + 1
-        points_home = 0
-        points_away = 0
+        points_h += 1
 
-    return sets_home, sets_away, points_home, points_away
+    if team == "A":
+        points_a += 1
+
+    if last_set == False:
+        if points_h >= 25:
+            if points_a < points_h - 1:
+                points_h = 0
+                points_a = 0
+                sets_h += 1
+
+    if last_set == False:
+        if points_a >= 25:
+            if points_h < points_a -1:
+                points_h = 0
+                points_a = 0
+                sets_a += 1
+
+    return sets_h, sets_a, points_h, points_a
