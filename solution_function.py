@@ -15,6 +15,7 @@ def update_score(oldscore, team):
 
     last_set = True
     if sets_h == 2 and sets_a == 2:
+        pass
 
     if team == "H":
         points_h += 1
@@ -24,13 +25,27 @@ def update_score(oldscore, team):
 
     if last_set == False:
         if points_h >= 25:
-            if points_a < points_h - 1:
+            if abs(points_h - points_a) == 2:
                 points_h = 0
                 points_a = 0
                 sets_h += 1
 
     if last_set == False:
         if points_a >= 25:
+            if abs(points_a - points_h) == 2:
+                points_h = 0
+                points_a = 0
+                sets_a += 1
+
+    if last_set == True:
+        if points_h >= 15:
+            if points_a < points_h - 1:
+                points_h = 0
+                points_a = 0
+                sets_h += 1
+
+    if last_set == True:
+        if points_a >= 15:
             if points_h < points_a -1:
                 points_h = 0
                 points_a = 0
